@@ -2,11 +2,10 @@
 ; Exercise 0
 ; In this exercise you will learn how to set the background color
 ;
-; Code is written for running in 8bitworkshop.com. Stub
-; is copied from there and "Making Games For The Atari 2600
+; Written for use with 8bitworkshop.com. 
+; Code included there and "Making Games For The Atari 2600"
 ; by Steven Hugg
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
 ;;;; Header
 ;;;; Needed at top of all your source files  

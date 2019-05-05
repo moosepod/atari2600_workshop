@@ -1,12 +1,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
-; Exercise 0
-; In this exercise you will learn how to set the background color
+; Exercise 1
+; In this exercise you will cycle the background color, and
+; learn about the X register and decrementing
 ;
 ; Written for use with 8bitworkshop.com. 
 ; Code included there and "Making Games For The Atari 2600"
 ; by Steven Hugg
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
 ;;;; Header
 ;;;; Needed at top of all your source files  
@@ -36,8 +36,9 @@ ZeroZP	sta $0,X
 NextFrame
 
         ;;; INSERT YOUR CODE BELOW THIS 
-        LDA #$80
-        STA COLUBK
+        STX COLUBK
+        DEX
+        STA WSYNC
         ;;; AND ABOVE THIS
 
 	jmp NextFrame
