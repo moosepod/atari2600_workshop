@@ -179,6 +179,7 @@ OverscanLoop
 
         ; Use a vblank line to check for bounds 
         ;;; INSERT CODE BELOW HERE
+        clc
         lda PlayerYPos
         cmp #2
         bcs .TopBoundsCheck
@@ -204,7 +205,7 @@ OverscanLoop
         inx
 .SkipMoveUp
 	stx PlayerYPos
-    
+
     ;;; INSERT CODE BELOW HERE
 	bit INPT4
         bmi .ButtonNotPressed

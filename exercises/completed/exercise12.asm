@@ -1,6 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
-; Exercise 10
-; In this exercise you will add a bounds check
+; Exercise 12
+; In this exercise you will add horizontal positioning
 ;
 ; Written for use with 8bitworkshop.com. 
 ; Code included there and "Making Games For The Atari 2600"
@@ -23,6 +23,7 @@
 
     	;;; INSERT YOUR VARIABLES BELOW THIS 
 PlayerYPos  .byte
+PlayerXPos  .byte
     	;;; AND ABOVE THIS
 
 ;;;;;;;;;;;;;;;;;; CODE SEGMENT ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -37,7 +38,7 @@ PlayerYPos  .byte
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
 
 Start	sei
-	    cld
+	cld
         ldx #$ff 
         txs 
         lda #0 ; 
@@ -50,6 +51,8 @@ ZeroZP	sta $0,X
     ;;; INITIALIZE YOUR VARIABLES BELOW THIS 
     lda #80
     sta PlayerYPos
+    lda #71
+    sta PlayerXPos
     ;;; AND ABOVE THIS
 
 
@@ -67,14 +70,21 @@ NextFrame
         lda #0
         sta VSYNC 
         
-        ; now loop through 33 vertical blank lines
-        ldx #33
+        ; now loop through 31 vertical blank lines
+        ldx #31
 VBlankLoop
 	sta WSYNC
         dex
         bne VBlankLoop
         
-        
+        ;;; REPLACE BETWEEN CODE HERE
+        lda PlayerXPos
+        ldx #0
+        jsr SetHorizPos
+        sta WSYNC
+        sta HMOVE
+        ;;; AND HERE
+
         ; we will use our final two vblank line to setup
         ; any drawing                
         lda #$ff
@@ -85,14 +95,8 @@ VBlankLoop
         sta COLUPF
         sta WSYNC
         
-        ldx #8
-HorizPositionLoop
-        dex
-        bne HorizPositionLoop
-        sta RESP0
 
-        sta WSYNC
-
+        
         ;;; now turn beam back on and draw 192 lines
         lda #0
         sta VBLANK
@@ -170,14 +174,14 @@ ScanLoopBottom
         ; turning beam off again
         lda #2
 	sta VBLANK 
-        ldx #31
+        ldx #29
 OverscanLoop 
 	sta WSYNC
         dex
         bne OverscanLoop
 
         ; Use a vblank line to check for bounds 
-        ;;; INSERT CODE BELOW HERE
+        ;;; Up/down 
         lda PlayerYPos
         cmp #2
         bcs .TopBoundsCheck
@@ -203,7 +207,45 @@ OverscanLoop
         inx
 .SkipMoveUp
 	stx PlayerYPos
+	sta WSYNC
         clc
+        
+        ;;; Left/right
+        ;;; INSERT CODE BELOW HERE
+        ldx PlayerXPos
+        lda #$80
+        bit SWCHA
+        bne .SkipMoveLeft
+        inx
+.SkipMoveLeft
+	lda #$40
+        bit SWCHA
+        bne .SkipMoveRight
+        dex
+.SkipMoveRight
+	stx PlayerXPos
+	sta WSYNC
+        clc
+        ;;; AND ABOVE HERE
+        
+        ;;; Sound check
+	bit INPT4
+        bmi .ButtonNotPressed
+        lda #5
+        sta AUDV0
+        lda #13
+        sta AUDC0
+        lda PlayerYPos
+        lsr 
+        lsr 
+        lsr 
+        sta AUDF0
+        jmp .ButtonPressedDone
+.ButtonNotPressed
+	lda #0
+        sta AUDV0
+.ButtonPressedDone
+    ;;; INSERT CODE ABOVE HERE
         
         sta WSYNC
 
@@ -213,7 +255,28 @@ OverscanLoop
         ;;; 192 scan lines
         ;;; 30 overscan lines
 
-	jmp NextFrame
+	jmp NextFrame 
+        
+;; Fine horizontal positioning
+;; From Making Games for the Atari 2600
+;; Note it will call WSYNC to start
+;; A should have desired X coord
+;; X is (0) player 0 (1) player 1 (2) missile 0
+;; (3) missile 1 (4) ball
+SetHorizPos subroutine
+	sta WSYNC
+        sec
+.DivideLoop
+	sbc #15
+        bcs .DivideLoop ; loop until we go <0
+        eor #7
+        asl
+        asl
+        asl
+        asl
+        sta HMP0,x ; set fine offset
+        sta RESP0,x ; set coarse
+        rts
         
 ;---Graphics Data from PlayerPal 2600---
 

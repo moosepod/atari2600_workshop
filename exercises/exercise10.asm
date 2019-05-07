@@ -194,7 +194,6 @@ OverscanLoop
 .SkipMoveUp
 	stx PlayerYPos
 
-        
         sta WSYNC
 
         ;;; Now we've drawn our

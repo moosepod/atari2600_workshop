@@ -204,7 +204,8 @@ OverscanLoop
         inx
 .SkipMoveUp
 	stx PlayerYPos
-    
+        clc
+        
     ;;; INSERT CODE BELOW HERE
 	
     ;;; INSERT CODE ABOVE HERE
