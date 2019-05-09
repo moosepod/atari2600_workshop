@@ -76,6 +76,7 @@ NextFrame
         ;;; REPLACE BETWEEN CODE HERE
         TIMER_SETUP 37
         ;;; AND HERE
+
         lda PlayerXPos
         ldx #0
         jsr SetHorizPos
@@ -92,7 +93,7 @@ NextFrame
         sta COLUPF
         sta WSYNC
         
-        ;;; INSERT BODE BELOW CODE HERE
+        ;;; INSERT CODE BELOW CODE HERE
         TIMER_WAIT
         ;;; AND ABOVE HERE
         
@@ -210,7 +211,7 @@ OverscanLoop
         clc
         
         ;;; Left/right
-        ;;; Colision detection
+        ;;; Collision detection
         
         ;;; INSERT HERE
         lda PlayerXPos

@@ -72,9 +72,7 @@ NextFrame
         lda #0
         sta VSYNC 
         
-        ;;; REPLACE BETWEEN CODE HERE
         TIMER_SETUP 37
-        ;;; AND HERE
         lda PlayerXPos
         ldx #0
         jsr SetHorizPos
@@ -91,9 +89,7 @@ NextFrame
         sta COLUPF
         sta WSYNC
         
-        ;;; INSERT BODE BELOW CODE HERE
         TIMER_WAIT
-        ;;; AND ABOVE HERE
         
         ;;; now turn beam back on and draw 192 lines
         lda #0

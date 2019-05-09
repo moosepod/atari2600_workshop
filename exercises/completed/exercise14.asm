@@ -72,9 +72,7 @@ NextFrame
         lda #0
         sta VSYNC 
         
-        ;;; REPLACE BETWEEN CODE HERE
         TIMER_SETUP 37
-        ;;; AND HERE
         lda PlayerXPos
         ldx #0
         jsr SetHorizPos
@@ -89,9 +87,7 @@ NextFrame
         sta PF2
         sta WSYNC
         
-        ;;; INSERT BODE BELOW CODE HERE
         TIMER_WAIT
-        ;;; AND ABOVE HERE
         
         ;;; now turn beam back on and draw 192 lines
         lda #0
@@ -207,14 +203,12 @@ OverscanLoop
         ;;; Left/right
         ;;; Colision detection
         
-        ;;; INSERT HERE
         lda PlayerXPos
         bit CXP0FB
         bpl .NoCollision
 	ldx PlayerXPosOld
         jmp .SkipMoveRight
 .NoCollision
-        ;;; ABOVE HERE
         ldx PlayerXPos
         stx PlayerXPosOld
         lda #$80
@@ -272,7 +266,6 @@ OverscanLoop
         lda #$80
         sta COLUPF
 .ButtonPressedDone
-    ;;; INSERT CODE ABOVE HERE
         
         sta WSYNC
 

@@ -88,9 +88,6 @@ HorizPositionLoop
         sta WSYNC
         ;;; AND HERE
         
-        ;;; now turn beam back on and draw 192 lines
-        lda #0
-        sta VBLANK
     
         ; we will use our final two vblank line to setup
         ; any drawing                
@@ -102,6 +99,10 @@ HorizPositionLoop
         sta COLUPF
         sta WSYNC
 
+        ;;; now turn beam back on and draw 192 lines
+        lda #0
+        sta VBLANK
+        
         ;;; Draw 10 lines
         ldx #10
 ScanLoopTop
@@ -233,7 +234,6 @@ OverscanLoop
 	lda #0
         sta AUDV0
 .ButtonPressedDone
-    ;;; INSERT CODE ABOVE HERE
         
         sta WSYNC
 

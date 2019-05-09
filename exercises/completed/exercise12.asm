@@ -245,7 +245,6 @@ OverscanLoop
 	lda #0
         sta AUDV0
 .ButtonPressedDone
-    ;;; INSERT CODE ABOVE HERE
         
         sta WSYNC
 
