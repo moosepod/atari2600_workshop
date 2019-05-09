@@ -178,19 +178,6 @@ OverscanLoop
 
         ; Use a vblank line to check for collisions and adjust
         ;;; INSERT CODE BELOW HERE
-        lda PlayerYPos
-        cmp #2
-        bcs .TopBoundsCheck
-        ldx #2
-        jmp .SkipMoveUp
-.TopBoundsCheck  
-        lda PlayerYPos
-	cmp #162
-        bcc .JoystickCheck
-        ldx #161
-        jmp .SkipMoveUp
-        ;;; AND ABOVE HERE
-.JoystickCheck
 	ldx PlayerYPos
         lda #$10
         bit SWCHA
@@ -202,7 +189,9 @@ OverscanLoop
         bne .SkipMoveUp
         inx
 .SkipMoveUp
-	stx PlayerYPos
+	stx PlayerYPos 
+        ;;; AND ABOVE HERE
+
 
         
         sta WSYNC

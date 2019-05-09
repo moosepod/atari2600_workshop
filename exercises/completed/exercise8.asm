@@ -1,6 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
-; Exercise 7
-; In this exercise you will add a single-line sprite
+; Exercise 8
+; In this exercise you will add a multi-line sprite, from Data
+; with multiple colors
 ;
 ; Written for use with 8bitworkshop.com. 
 ; Code included there and "Making Games For The Atari 2600"
@@ -125,10 +126,12 @@ ScanLoopMiddleTop
         ldx #8
 ScanLoopDrawSprite
 	    sta WSYNC
+        ;;;; INSERT CODE BELOW HERE
         lda ButtonsFrame0,x
         sta GRP0
         lda ButtonsColorFrame0,x
         sta COLUP0
+        ;;;; AND ABOVE HERE
         dex
         bne ScanLoopDrawSprite
         

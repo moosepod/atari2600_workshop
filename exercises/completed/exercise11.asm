@@ -205,8 +205,7 @@ OverscanLoop
         inx
 .SkipMoveUp
 	stx PlayerYPos
-
-    ;;; INSERT CODE BELOW HERE
+        ;;; INSERT CODE ABOVE HERE
 	bit INPT4
         bmi .ButtonNotPressed
         lda #5
@@ -224,7 +223,6 @@ OverscanLoop
         sta AUDV0
 .ButtonPressedDone
     ;;; INSERT CODE ABOVE HERE
-        
         sta WSYNC
 
         ;;; Now we've drawn our

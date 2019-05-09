@@ -178,7 +178,6 @@ OverscanLoop
         bne OverscanLoop
 
         ; Use a vblank line to check for bounds 
-        ;;; INSERT CODE BELOW HERE
         lda PlayerYPos
         cmp #2
         bcs .TopBoundsCheck
