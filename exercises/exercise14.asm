@@ -85,8 +85,6 @@ NextFrame
         sta PF0
         sta PF1
         sta PF2
-        lda #$80
-        sta COLUPF
         sta WSYNC
         
         TIMER_WAIT
@@ -154,8 +152,6 @@ ScanLoopMiddleBottom
         sta PF0
         sta PF1
         sta PF2
-        lda #$80
-        sta COLUPF
         
         ;;; Draw another 10 lines
         ldx #10
@@ -207,14 +203,12 @@ OverscanLoop
         ;;; Left/right
         ;;; Colision detection
         
-        ;;; INSERT HERE
         lda PlayerXPos
         bit CXP0FB
         bpl .NoCollision
 	ldx PlayerXPosOld
         jmp .SkipMoveRight
 .NoCollision
-        ;;; ABOVE HERE
         ldx PlayerXPos
         stx PlayerXPosOld
         lda #$80
@@ -237,6 +231,7 @@ OverscanLoop
         ;;; Sound check
 	bit INPT4
         bmi .ButtonNotPressed
+        ; channel 0
         lda #5
         sta AUDV0
         lda #13
@@ -246,12 +241,15 @@ OverscanLoop
         lsr 
         lsr 
         sta AUDF0
+        ;;; INSERT CODE BELOW 1
+        ;;; INSERT CODE ABOVE 1
         jmp .ButtonPressedDone
 .ButtonNotPressed
 	lda #0
         sta AUDV0
+        ;;; INSERT CODE BELOW 2
+        ;;; INSERT CODE ABOVE 2
 .ButtonPressedDone
-    ;;; INSERT CODE ABOVE HERE
         
         sta WSYNC
 
