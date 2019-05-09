@@ -36,8 +36,8 @@ ZeroZP	sta $0,X
 NextFrame
 
         ;;; INSERT YOUR CODE BELOW THIS 
-        LDA #$80
-        STA COLUBK
+        lda #$80
+        sta COLUBK
         ;;; AND ABOVE THIS
 
 	jmp NextFrame

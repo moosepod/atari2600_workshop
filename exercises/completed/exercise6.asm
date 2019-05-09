@@ -1,5 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
-; Exercise 5
+; Exercise 6
 ; In this exercise you will draw side borders using 
 ; playfield graphics
 ;
@@ -14,23 +14,19 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-	processor 6502
-	include "vcs.h"
+    processor 6502
+    include "vcs.h"
 
 ;;;;;;;;;;;;;;;;;; VARIABLE SEGMENT ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-	seg.u Variables
-    	org $80
-
-    	;;; INSERT YOUR VARIABLES BELOW THIS 
-
-    	;;; AND ABOVE THIS
+    seg.u Variables
+        org $80
 
 ;;;;;;;;;;;;;;;;;; CODE SEGMENT ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-	seg Code
-	org $f000
-   
+    seg Code
+    org $f000
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
 ;;;; GENERAL INIT
 ;;;; This code is necessary for initialization 
@@ -38,24 +34,20 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
 
 Start	sei
-	    cld
+        cld
         ldx #$ff 
         txs 
         lda #0 ; 
         ldx #$ff
 ZeroZP	sta $0,X
-	    dex
+        dex
         bne ZeroZP
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    ;;; INITIALIZE YOUR VARIABLES BELOW THIS 
-
-    ;;; AND ABOVE THIS
-
 
 NextFrame
-	; next two lines turn off beam
-	lda #2
+    ; next two lines turn off beam
+    lda #2
         sta VBLANK 
         ; now three lines of vsync per spec
         sta VSYNC  
@@ -70,7 +62,7 @@ NextFrame
         ; now loop through 36 vertical blank lines
         ldx #36
 VBlankLoop
-	sta WSYNC
+    sta WSYNC
         dex
         bne VBlankLoop
         
@@ -83,7 +75,7 @@ VBlankLoop
         lda #$80
         sta COLUPF
         sta WSYNC
-	
+    
         ;;; now turn beam back on and draw 192 lines
         lda #0
         sta VBLANK
@@ -91,11 +83,11 @@ VBlankLoop
         ;;; Draw 10 lines
         ldx #10
 ScanLoopTop
-	sta WSYNC
+    sta WSYNC
         dex
         bne ScanLoopTop
         
-        ;;; REPLACE CODE IN HERE
+        ;;; REPLACE CODE IN HERE 
         lda $01
         sta CTRLPF
 	lda $10
@@ -108,7 +100,7 @@ ScanLoopTop
         ;;; Draw 172 lines
         ldx #172
 ScanLoopMiddle
-	sta WSYNC
+    sta WSYNC
         dex
         bne ScanLoopMiddle
         
@@ -123,7 +115,7 @@ ScanLoopMiddle
         ;;; Draw another 10 lines
         ldx #10
 ScanLoopBottom
-	sta WSYNC
+    sta WSYNC
         dex
         bne ScanLoopBottom        
         
@@ -135,8 +127,8 @@ ScanLoopBottom
         sta VBLANK 
         ldx #30
 OverscanLoop
-	sta WSYNC
-        dex
+    sta WSYNC
+        dex 
         bne OverscanLoop
                 
         ;;; Now we've drawn our
@@ -145,13 +137,12 @@ OverscanLoop
         ;;; 192 scan lines
         ;;; 30 overscan lines
 
-	jmp NextFrame
-	
+    jmp NextFrame
+    
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
 ;;;; Footer
 ;;;; Needed at bottom of all your source files  
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 	
     org $fffc
-	.word Start
-	.word Start
- 
+    .word Start
+    .word Start

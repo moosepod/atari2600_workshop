@@ -48,11 +48,6 @@ ZeroZP	sta $0,X
         bne ZeroZP
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    ;;; INITIALIZE YOUR VARIABLES BELOW THIS 
-
-    ;;; AND ABOVE THIS
-
-
 NextFrame
 	; next two lines turn off beam
 	lda #2

@@ -36,8 +36,8 @@ ZeroZP	sta $0,X
 NextFrame
 
         ;;; INSERT YOUR CODE BELOW THIS 
-        STX COLUBK
-        DEX
+        stx COLUBK
+        dex
         ;;; AND ABOVE THIS
 
 	jmp NextFrame

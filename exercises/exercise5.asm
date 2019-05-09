@@ -22,10 +22,6 @@
 	seg.u Variables
     	org $80
 
-    	;;; INSERT YOUR VARIABLES BELOW THIS 
-
-    	;;; AND ABOVE THIS
-
 ;;;;;;;;;;;;;;;;;; CODE SEGMENT ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 	seg Code
@@ -47,10 +43,6 @@ ZeroZP	sta $0,X
 	    dex
         bne ZeroZP
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-    ;;; INITIALIZE YOUR VARIABLES BELOW THIS 
-
-    ;;; AND ABOVE THIS
 
 
 NextFrame

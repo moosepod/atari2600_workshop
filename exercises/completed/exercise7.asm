@@ -84,7 +84,7 @@ VBlankLoop
         sta WSYNC
         
         ;;; CHANGE CODE BELOW THIS
-        ldx #8
+        ldx #1
 	;;; AND ABOVE THIS
 HorizPositionLoop
         dex

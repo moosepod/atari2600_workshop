@@ -1,7 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
-; Exercise 8
-; In this exercise you will add a multi-line sprite, from Data
-; with multiple colors
+; Exercise 7
+; In this exercise you will add a single-line sprite
 ;
 ; Written for use with 8bitworkshop.com. 
 ; Code included there and "Making Games For The Atari 2600"
@@ -85,7 +84,7 @@ VBlankLoop
         sta WSYNC
         
         ;;; CHANGE CODE BELOW THIS
-        ldx #8
+        ldx #1
 	;;; AND ABOVE THIS
 HorizPositionLoop
         dex
@@ -119,27 +118,23 @@ ScanLoopMiddleTop
         dex
         bne ScanLoopMiddleTop
         
-        lda #$32
-        sta COLUP0
+        ;;; INSERT YOUR CODE BELOW THIS - BLOCK 1
+ 
+        ;;; AND ABOVE THIS
 
-        ;;; Draw 8 lines
-        ldx #8
+        ;;; Draw 10 lines
+        ldx #10
 ScanLoopDrawSprite
 	sta WSYNC
-        lda ButtonsFrame0,x
-        sta GRP0
-        lda ButtonsColorFrame0,x
-        sta COLUP0
         dex
         bne ScanLoopDrawSprite
         
-        sta WSYNC
+        ;;; INSERT YOUR CODE BELOW THIS - BLOCK 2
+
+        ;;; AND ABOVE THIS
         
-        lda #0
-        sta GRP0
-        
-        ;;; Draw 91 lines
-        ldx #91
+        ;;; Draw 90 lines
+        ldx #90
 ScanLoopMiddleBottom
 	sta WSYNC
         dex
@@ -179,37 +174,7 @@ OverscanLoop
         ;;; 30 overscan lines
 
 	jmp NextFrame
-        
-;---Graphics Data from PlayerPal 2600---
-
-ButtonsFrame0
-        .byte #%00000000;$30
-        .byte #%00011000;$30
-        .byte #%00011000;$30
-        .byte #%00000000;$74
-        .byte #%01100110;$74
-        .byte #%01100110;$74
-        .byte #%00000000;$74
-        .byte #%00011000;$B4
-        .byte #%00011000;$B4
-;---End Graphics Data---
-
-
-;---Color Data from PlayerPal 2600---
-
-ButtonsColorFrame0
-        .byte #$30;
-        .byte #$30;
-        .byte #$74;
-        .byte #$74;
-        .byte #$74;
-        .byte #$74;
-        .byte #$B4;
-        .byte #$B4;
-;---End Color Data---
-
-
-
+	
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 
 ;;;; Footer
 ;;;; Needed at bottom of all your source files  

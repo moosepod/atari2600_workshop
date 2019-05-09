@@ -23,7 +23,6 @@
     	org $80
 
     	;;; INSERT YOUR VARIABLES BELOW THIS 
-
     	;;; AND ABOVE THIS
 
 ;;;;;;;;;;;;;;;;;; CODE SEGMENT ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

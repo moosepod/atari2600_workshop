@@ -50,11 +50,11 @@ ZeroZP	sta $0,X
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     ;;; INITIALIZE YOUR VARIABLES BELOW THIS 
-    LDA #10
-    STA CycleSpeed
-    TAY
-    LDA #40
-    STA BackgroundColor
+    lda #10
+    sta CycleSpeed
+    tay
+    lda #40
+    sta BackgroundColor
     ;;; AND ABOVE THIS
 
 
@@ -82,15 +82,15 @@ VBlankLoop
         ; we will use our final vblank line to setup
         ; any drawing                
         ;;; INSERT YOUR CODE BELOW THIS 
-        DEY
-        BNE SkipDecrementColor
-	LDY BackgroundColor
-        DEY
-        STY BackgroundColor
-        LDY CycleSpeed
+        dey
+        bne SkipDecrementColor
+	ldy BackgroundColor
+        dey
+        sty BackgroundColor
+        ldy CycleSpeed
 SkipDecrementColor
-	LDA BackgroundColor
-        STA COLUBK
+	lda BackgroundColor
+        sta COLUBK
         ;;; AND ABOVE THIS
 	sta WSYNC
 
