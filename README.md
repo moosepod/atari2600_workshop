@@ -1,4 +1,4 @@
-`This project has been moved to` [tangled.org](https://tangled.org/moosepod.com/atari2600-workshop). `All further development will take place there.`
+*Important note*: This project has been moved to https://tangled.org/moosepod.com/atari2600-workshop. All further development will take place there.
 
 # atari2600_workshop
 
